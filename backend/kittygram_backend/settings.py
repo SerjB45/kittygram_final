@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default_key')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['158.160.225.31' , '127.0.0.1' , 'localhost', 'kittygramyabs.hopto.org']
+ALLOWED_HOSTS = ['95.25.105.106' , '127.0.0.1' , 'localhost', 'kittygramyabs.hopto.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
