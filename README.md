@@ -1,27 +1,77 @@
-#  Как работать с репозиторием финального задания
+# Kittygram
+Проект, который дает возможность пользователям публиковать фотографии своих котов, их достижения и другию краткую информацию о них. Доступ предоставляется зарегистрированным пользователям
 
-## Что нужно сделать
+# Стек технологий
+- Python 3.12
+- Django 5.1
+- Gunicorn 23.0
+- Django Rest Framework 3.15
+- Pillow 11.0
+- PostgreSQL
+- Docker
+- Nginx
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
 
-## Как проверить работу с помощью автотестов
+# Как запустить проект:
+## 1 вариант(из готовых образов)
+1. скачать docker-compose.production.yml
+2. создать файл с переменными окружениями .env в корне проекта(пример заполнения в .env.example)
+3. выполнить команду docker compose -f docker-compose.production.yml up
+4. выполнить миграции 
+- sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+- sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+- sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
+5. Проверить доступность проекта по localhost
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+## 2 вариант(сборка проекта из исходников)
+1. Клонировать репозиторий и перейти в него:
+
+```
+git clone https://github.com/SerjB45/kittygram_final.git
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+```
+cd kittygram_backend
+```
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+2. Cоздать и активировать виртуальное окружение:
 
-## Чек-лист для проверки перед отправкой задания
+```
+python3 -m venv env
+```
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
- 
+* Если у вас Linux/macOS
+
+    ```
+    source env/bin/activate
+    ```
+
+* Если у вас windows
+
+    ```
+    source env/scripts/activate
+    ```
+
+```
+python3 -m pip install --upgrade pip
+```
+
+3. Установить зависимости из файла requirements.txt:
+
+```
+pip install -r backend/requirements.txt
+```
+
+4. создать файл с переменными окружениями .env в корне проекта(пример заполнения в .env.example)
+
+5. Запустите проект 
+```
+sudo docker compose up
+```
+
+6. выполнить миграции 
+- sudo docker compose exec backend python manage.py migrate
+- sudo docker compose exec backend python manage.py collectstatic
+- sudo docker compose exec backend cp -r /app/collected_static/. /backend_static/static/
+
+7. Проверить доступность проекта по localhost
