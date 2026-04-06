@@ -1,7 +1,4 @@
-# TODO: Запустить проект на другом сервере
-# На своем сервере пока не получилось развернуть из-за технических проблем
-# Сейчас проекты запущены на учебном сервере
-repo_owner: SerjB45
+repo_owner: SerjB45 # TODO: Развернуть проект на другом сервере. Проекты на учебном сервере. На своем сервере пока не получилось из-за технических проблем
 kittygram_domain: https://kittygramyabs.hopto.org
 taski_domain: https://taskiyabs.hopto.org
 dockerhub_username: sergey345bk
